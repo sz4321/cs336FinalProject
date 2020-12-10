@@ -1,0 +1,10 @@
+<div *ngFor="let tasks of listOfTask; let i = index" class="icon-and-checkbox">
+  <mat-checkbox class="checkbox" (change)="OnChange($event, tasks.task)" [ngClass]="{'gray-background':tasks.checked}" [checked]="tasks.checked">{{tasks.task}}</mat-checkbox>
+  <mat-icon class="delete-task" (click)="deleteTask(tasks.task)">delete</mat-icon>
+  <mat-icon class="edit-task" (click)="editTask(tasks.task)">edit</mat-icon>
+</div>
+<div >
+    <button class="add-task" (click)="addtask()">
+        <mat-icon>add</mat-icon>
+      </button>
+</div>

@@ -1,0 +1,53 @@
+
+.log-in-parent{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    // border: black solid;
+    height: 84%;
+
+}
+
+.grad-image{
+    grid-column-start: 1;
+    height:100%;
+}
+
+
+.log-in{
+    grid-column-start: 2;
+    margin:auto auto auto auto;  
+    display: table;
+    height:50%;
+    width: 50%;
+}
+
+.inner-elements{
+    grid-column-start: 2;
+    border: black solid;
+    display: table-cell;
+    margin:auto auto;  
+    padding:0 10%;
+    vertical-align: middle;
+    border-radius: 5%;   
+    box-shadow: 10px 10px #888888;
+    background-color: white;
+}
+
+.username-input, .password-input, .sign-in-button, .new-account-button{
+    margin-bottom: 3%;
+    box-shadow: 1px 1px #888888;
+    border-radius: 5%;   
+    height:3vh;
+}
+
+.username-input{
+    width: 10vw;
+}
+
+.password-input{
+    width: 10vw;
+}
+
+.new-account-button{
+    height: auto;
+}

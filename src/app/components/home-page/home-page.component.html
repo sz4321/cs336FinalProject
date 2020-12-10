@@ -1,0 +1,13 @@
+<h4 class="header">Add the list of schools you plan to apply for</h4>
+<div class="content" *ngFor="let school of schoolName">
+  <mat-card (click)="openSchool(school.schoolName)" class="school-list">{{school.schoolName}}</mat-card>
+</div>
+
+<div >
+    <button class="add-school" (click)="addschool()">
+        <mat-icon>add</mat-icon>
+      </button>
+</div>
+
+<!-- fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%"  -->
+<!-- fxLayout="row wrap" fxLayoutGap="16px grid" -->

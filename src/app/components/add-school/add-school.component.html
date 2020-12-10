@@ -1,0 +1,13 @@
+
+<div class="add-school-div">
+    <label>School name:</label>
+    <input type="text" [(ngModel)]="schoolName">
+    <br>
+
+    <label>Deadline for application</label>
+    <input matInput [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+
+    <button (click)="createSchool()" [mat-dialog-close]>Save</button>
+</div>

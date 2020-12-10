@@ -1,0 +1,65 @@
+.icon-and-checkbox{
+    display : grid;
+    grid-template-columns: 90% 5% 5%;
+    margin-bottom: 1vh;
+
+}
+
+.checkbox{
+    width: 100%;
+    color: white;
+    border-radius: 5%;
+    margin-right: 5vw;
+    grid-column-start: 1;
+    background-color: black;
+
+}
+
+// width: 25%;
+// color: white;
+// border-radius: 5%;
+// margin-right: 5vw;
+// grid-column-start: 1;
+// background-color: royalblue;
+// margin-left: auto;
+// margin-right: auto;
+
+.delete-task{
+    grid-column-start: 2;
+}
+
+.delete-task, .edit-task{
+    color: white;
+    background-color: black;
+    margin-left: 1vw;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.edit-task{
+    grid-column-start: 3;
+}
+
+.test-class{
+    background-color: gray;
+}
+
+.add-task{
+    border-radius: 50%;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    background-color: black;
+    color: white; 
+}
+
+.gray-background{
+    background-color: gray;
+}
+
+
+
+
+
+
+
