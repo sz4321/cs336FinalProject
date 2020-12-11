@@ -5,6 +5,8 @@ import { AddSchoolComponent } from '../add-school/add-school.component';
 import { ToDoListComponent } from '../to-do-list/to-do-list.component';
 import { LogInComponent } from '../log-in/log-in.component';
 import {manageData} from 'src/app/data/manageData'
+import { SchoolService } from 'src/app/services/school.service';
+import { EditSchoolComponent } from '../edit-school/edit-school.component';
 
 
 
@@ -19,24 +21,33 @@ export class HomePageComponent implements OnInit {
 
   constructor(private router:Router,
     public dialog: MatDialog,
-    private manageData:manageData) { }
+    private manageData:manageData,
+    private schoolService:SchoolService) { }
 
   //the list of the name of the schools
-  schoolName = this.manageData.getData();
+  // schoolName = this.manageData.getData();
+  schoolName = this.schoolService.getSchools();
 
   ngOnInit(): void {
   }
 
   openSchool(schoolSelected){
-    console.log("open school has been clicked");
-    this.manageData.setCurrentSchool(schoolSelected);
+    this.schoolService.setCurrentSchool(schoolSelected);
     this.router.navigate(['/to-do-list']);
-    console.log(schoolSelected);
 
   }
 
   addschool(){
     this.dialog.open(AddSchoolComponent);
 
+  }
+
+  deleteSchool(schoolName){
+    this.schoolService.deleteSchool(schoolName);
+  }
+
+  editSchool(schoolName){
+    this.schoolService.clickedSchool = schoolName;
+    this.dialog.open(EditSchoolComponent);
   }
 }

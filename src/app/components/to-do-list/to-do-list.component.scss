@@ -57,6 +57,34 @@
     background-color: gray;
 }
 
+.task-entry{
+    margin-bottom: 1vh;
+    display : grid;
+    grid-template-columns: 7% 88% 5%;
+    height: 4vh;
+    position: sticky;
+}
+
+.task-input{
+    grid-column-start: 2;
+    border: black solid;
+}
+
+.task-button{
+    grid-column-start: 3;
+}
+
+.task-label{
+    grid-column-start: 1;
+    font-weight: bold;
+    text-align: center;
+}
+
+.header{
+    text-align: center;
+    font-weight: bold;
+}
+
 
 
 

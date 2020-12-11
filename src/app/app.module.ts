@@ -22,6 +22,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {manageData} from 'src/app/data/manageData';
 import { AddTaskComponent } from './components/add-task/add-task.component';
 import { EditTaskComponent } from './components/edit-task/edit-task.component'
+import { SchoolService } from './services/school.service';
+import { EditSchoolComponent } from './components/edit-school/edit-school.component';
 
 
 @NgModule({
@@ -34,6 +36,7 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component'
     AddSchoolComponent,
     AddTaskComponent,
     EditTaskComponent,
+    EditSchoolComponent,
   ],
   imports: [
     BrowserModule,

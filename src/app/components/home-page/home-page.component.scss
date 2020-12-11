@@ -1,10 +1,14 @@
 //make the cursor point when it hovers on the school list
+.content{
+    display : grid;
+    grid-template-columns: 90% 5% 5%;
+    border: gray solid;
+}
 .school-list{
+    grid-column-start: 1;
     cursor: pointer;
-    margin-bottom: 1vh;
     background-color: white;
     color: black;
-    border: gray solid;
     // height: 5vh;
     // width: 20vh;
 }
@@ -21,4 +25,9 @@
 .header{
     text-align: center;
     font-weight: bold;
+}
+
+.delete-school{
+    grid-column-start: 2;
+    cursor: pointer;
 }

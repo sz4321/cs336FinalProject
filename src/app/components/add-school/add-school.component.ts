@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {manageData} from 'src/app/data/manageData'
+import { SchoolService } from 'src/app/services/school.service';
 
 
 @Component({
@@ -11,7 +12,8 @@ import {manageData} from 'src/app/data/manageData'
 export class AddSchoolComponent implements OnInit {
 
   constructor(
-    private manageData : manageData) { }
+    private manageData : manageData,
+    private schoolService:SchoolService) { }
 
   schoolName = '';
 
@@ -19,10 +21,11 @@ export class AddSchoolComponent implements OnInit {
   }
 
   createSchool(){
-    this.manageData.addSchool(this.schoolName);
-    console.log("create school clicked");
+    //this.manageData.addSchool(this.schoolName);
+    ///////////////////////
+    this.schoolService.addSchool(this.schoolName);
 
-    this.manageData.printItems();
+    //this.manageData.printItems();
   }
 
 }

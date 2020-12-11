@@ -1,6 +1,8 @@
 <h4 class="header">Add the list of schools you plan to apply for</h4>
 <div class="content" *ngFor="let school of schoolName">
-  <mat-card (click)="openSchool(school.schoolName)" class="school-list">{{school.schoolName}}</mat-card>
+  <mat-card (click)="openSchool(school.school)" class="school-list">{{school.school}}</mat-card>
+  <mat-icon class="delete-school" (click)="deleteSchool(school.school)">delete</mat-icon>
+  <mat-icon class="edit-school" (click)="editSchool(school.school)">edit</mat-icon>
 </div>
 
 <div >

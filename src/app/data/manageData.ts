@@ -14,6 +14,14 @@ export interface schoolList {
     // "tasks"? :string[];
 }
 
+export interface School{
+  school: string;
+  task: string;
+  deadline? :string;
+  checked : boolean;
+}
+
+
 @Injectable({
   providedIn: 'root'
 })

@@ -1,10 +1,11 @@
-<div *ngFor="let tasks of listOfTask; let i = index" class="icon-and-checkbox">
+<h4 class="header">Tasks for {{clickedSchool}}</h4>
+<div class='task-entry'>
+  <label class='task-label'>Enter new task</label>
+  <input class = 'task-input' type='text' [(ngModel)]="currentTask" (keydown.enter)="enterTask()" >
+  <button class = 'task-button' (click)="enterTask()">Save</button>
+</div>
+<div *ngFor="let tasks of listOfTask" class="icon-and-checkbox">
   <mat-checkbox class="checkbox" (change)="OnChange($event, tasks.task)" [ngClass]="{'gray-background':tasks.checked}" [checked]="tasks.checked">{{tasks.task}}</mat-checkbox>
   <mat-icon class="delete-task" (click)="deleteTask(tasks.task)">delete</mat-icon>
   <mat-icon class="edit-task" (click)="editTask(tasks.task)">edit</mat-icon>
-</div>
-<div >
-    <button class="add-task" (click)="addtask()">
-        <mat-icon>add</mat-icon>
-      </button>
 </div>
