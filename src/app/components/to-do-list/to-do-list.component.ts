@@ -3,9 +3,13 @@ import { manageData } from 'src/app/data/manageData';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
-import { SchoolService } from 'src/app/services/school.service';
+import { SchoolService, SchoolTask } from 'src/app/services/school.service';
 import { DOCUMENT } from '@angular/common';
 import { observable, Observable } from 'rxjs';
+
+import { AngularFirestore } from '@angular/fire/firestore';
+import * as firebase from 'firebase';
+import {School} from 'src/app/services/school.service';
 
 @Component({
   selector: 'app-to-do-list',
@@ -22,7 +26,8 @@ export class ToDoListComponent implements OnInit {
 
   constructor(private manageData:manageData,
     public dialog: MatDialog,
-    private schoolService : SchoolService) {
+    private schoolService : SchoolService,
+    private firestore: AngularFirestore) {
      }
 
 
@@ -33,7 +38,13 @@ export class ToDoListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('here');
-    // this.listOfTask = this.schoolService.getTasksForSchool(this.schoolService.getCurrentSchool());
+    this.listOfTask = this.schoolService.getTasksForSchool(this.schoolService.getCurrentSchool());
+    this.firestore.collection<SchoolTask>('/TaskList').valueChanges().subscribe((i)=>{
+      let taskList;
+      taskList = i;
+      this.schoolService.setTasks(taskList);
+      this.listOfTask = this.schoolService.getTasksForSchool(this.schoolService.getCurrentSchool());
+    })
     
   }
 

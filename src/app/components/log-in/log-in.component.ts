@@ -27,9 +27,17 @@ export class LogInComponent implements OnInit {
     //if user hasn't entered username, show an alert
     //otherwise check if they have entered password
     //if not, show an alert, if they did, take to next page
-    (this.username === '') ? alert('Username is required') : 
-    (this.password == '') ? alert('Password is required') : this.router.navigate(['/home']) ;;
-
+    if(this.username === ''){
+      alert('Username is required')
+    }else{
+      sessionStorage.setItem('userName', this.username);
+      if(this.password == ''){
+        alert('Password is required');
+      }else{
+        sessionStorage.setItem('passwordEntered', "true");
+        this.router.navigate(['/home']);
+      }
+    }
     
   }
 

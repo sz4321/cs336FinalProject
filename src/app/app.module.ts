@@ -25,6 +25,10 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component'
 import { SchoolService } from './services/school.service';
 import { EditSchoolComponent } from './components/edit-school/edit-school.component';
 
+import { environment } from "src/environments/environment";
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+
 
 @NgModule({
   declarations: [
@@ -50,7 +54,9 @@ import { EditSchoolComponent } from './components/edit-school/edit-school.compon
     MatFormFieldModule,
     MatNativeDateModule,
     FormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
