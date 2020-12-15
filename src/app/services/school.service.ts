@@ -27,8 +27,6 @@ export interface School{
 export class SchoolService {
 
   constructor(private firestore: AngularFirestore) { 
-    // this.firestore.collection<School>('/SchoolList').valueChanges();
-    // this.schools = firestore.collection<School>('/SchoolList');
   }
 
   schools: School[] = [];
@@ -44,30 +42,28 @@ export class SchoolService {
   //add school to the list
   addSchool(schoolName:string){
     let schoolExists = this.schools.some(element => element.school === schoolName);
-    //check if school exists and if it doesn't add it
+
+    //generate an ID so it is easier to keep track of when school name is edited and deleted 
     let schoolID = this.firestore.createId();
     let schoolEntered:School = {"school":schoolName, "deadline":"", "id":schoolID};
-    // !schoolExists ? this.schools.push({"school":schoolName, "deadline":""}) : alert("School name already exists");
+
+    //check if school exists and if it doesn't add it
     !schoolExists ? this.firestore.collection('/SchoolList').doc(schoolID).set(schoolEntered) : alert("School name already exists");
   }
 
+  //add a task to the database 
   addTask(givenSchool, givenTask){
+    //generate id so it is easier to keep track of later 
     let taskID = this.firestore.createId();
     let schoolID = this.schools.find(element => element.school = givenSchool);
-    //this.tasks.push({"school":givenSchool,"checked":false,"taskDeadline":'',"task":givenTask, "id":this.firestore.createId(), schoolID:schoolID.id});
     this.firestore.collection('TaskList').doc(taskID).set({"school":givenSchool,"checked":false,"taskDeadline":'',"task":givenTask, "id":taskID, schoolID:schoolID.id});
   }
 
+  //for testing purposes 
   printItems(){
     console.log("Schools", this.schools);
     console.log("Tasks", this.tasks);
   }
-
-  // async testFun(){
-  //   console.log('from database', this.schools);
-
-  
-  // }
 
   async ngOnInit() {
     this.firestore.collection<School>('/SchoolList').valueChanges().subscribe((i)=>{
@@ -75,74 +71,40 @@ export class SchoolService {
     })
   }
 
-  
+  //return the schools that we have 
    getSchools(){
-    // this.schools = this.firestore.collection('/SchoolList').get()
-    // await this.ngOnInit();
-    // console.log('from get school' , this.schools);
     return this.schools;
   }
 
+  //set schools 
   setSchools(schools){
     this.schools = schools;
   }
+
+  //get the current tasks 
   getTasks(){
     return this.tasks;
   }
 
+  //set tasks 
   setTasks(tasks){
     this.tasks = tasks;
   }
 
+  //get the name of the current school 
   getCurrentSchool(){
-    // return this.currentSchool;
-
-    //get the last clicked school from the sessionstorage
     return sessionStorage.getItem('schoolSelected');
   }
 
+  //set the name of the current school 
   setCurrentSchool(schoolName){
     this.currentSchool = schoolName;
   }
 
-  
+  //get the list of the tasks for a school 
   getTasksForSchool(schoolName){
-    // let tasksForSchool = [];
-
-    // this.tasks.forEach(element => {
-    //   if(element.school === schoolName){
-    //     tasksForSchool.push(element);
-    //   }
-    // })
-
-    // return tasksForSchool;
-
-
-
-    // try{
-    //   function getTasks(element){
-    //     if( element.school === schoolName){
-    //       return element.task;
-    //     }
-    //   }
-    //   console.log('called here');
-    //   return this.tasks.filter(getTasks)[0];
-    // }
-    // catch{
-    //   ////////// BETTER ERROR MESSAGE
-    //   console.log("unable to read of void");
-    // }
-
-    // this.tasks.forEach(element => {
-    //   if(element.school === this.currentSchool){
-    //     tasksForSchool.push(element);
-    //   }
-    // })
-
-    // console.log('here');
-    // return tasksForSchool;
-
     try{
+      //filter the tasks by school name 
       function getTasks(element){
         if( element.school === schoolName){
           return element.task;
@@ -152,21 +114,16 @@ export class SchoolService {
       return this.tasks.filter(getTasks);
     }
     catch{
-      ////////// BETTER ERROR MESSAGE
       console.log("unable to read of void");
     }
 
    
   }
 
-  // testFunction(schoolName){
-  //   this.currentTasks = this.getTasksForSchool(schoolName);
-  //   console.log('empty', this.currentTasks);
-  //   return this.currentTasks;
-  // }
-
+  //check if the task has been checked 
   isChecked(givenSchool:string, givenTask){
     
+    //go through each task and check 
     this.tasks.forEach(element=>{
       if(element.school === givenSchool){
         if(element.task === givenTask){
@@ -176,22 +133,25 @@ export class SchoolService {
     })
   }
 
+
+  //check a given task 
   check(givenSchool:string,givenTask:string){
 
-
+    //go through each task and if it has the school and the task specified, then check 
     this.tasks.forEach(element=>{
       if(element.school === givenSchool){
         if(element.task === givenTask){
           this.firestore.collection("TaskList").doc(element.id).update({
             checked:true
           })
-          //element.checked = true;
         }
       }
     })
   }
 
+  //uncheck a given task 
   uncheck(givenSchool:string,givenTask:string){
+    //go through each task and if it has the name of task and school specified, then uncheck 
     this.tasks.forEach(element=>{
       if(element.school === givenSchool){
         if(element.task === givenTask){
@@ -205,24 +165,23 @@ export class SchoolService {
   }
 
 
+  //delete a given task 
   deleteGivenTask(givenSchool, givenTask){
+
+    //go through each task an delete the ones that fullfil the name and task provided 
     this.tasks.forEach(element=>{
       if(element.school === givenSchool){
         if(element.task == givenTask){
-          //this.tasks.splice(this.tasks.indexOf(element), 1);
           this.firestore.collection('TaskList').doc(element.id).delete();
         }
       }
     })
   }
 
+  //edit the name of a given task 
   editGivenTask(givenSchool, oldTask, newTask){
-    // let taskRef = this.firestore.collection('TaskList').doc(givenSchool+oldTask);
-    // taskRef.update({
-    //   task:newTask
-    // })
 
-
+    //iterate through each task and edit the one provided 
     this.tasks.forEach(element=>{
       if(element.school === givenSchool){
         if(element.task === oldTask){
@@ -235,35 +194,27 @@ export class SchoolService {
     })
   }
 
+  //delete the name of school provided 
   deleteSchool(schoolName){
-    
-    console.log(this.tasks);
+    //go through each task and delete the task with the school name provided 
     this.tasks.forEach(element=>{
       if(element.school == schoolName){
         this.firestore.collection('TaskList').doc(element.id).delete();
       }
     })
 
+    //go through each school and delete the school name 
     this.schools.forEach(element=>{
       if(element.school == schoolName){
         this.firestore.collection('SchoolList').doc(element.id).delete();
       }
     })
-
-    // this.schools.forEach(element=>{
-    //   if(element.school == schoolName){
-    //     this.schools.splice(this.schools.indexOf(element),1);
-    //   }
-    // })
-
-    // this.tasks.forEach(element=>{
-    //   if(element.school==schoolName){
-    //     this.tasks.splice(this.tasks.indexOf(element),1);
-    //   }
-    // })
   }
 
+  //edit the name of the school 
   editSchool(schoolName, newSchoolName){
+
+    //go through each task and edit the school name of the one provided 
     this.tasks.forEach(element=>{
       if(element.school == schoolName){
         // element.school = newSchoolName;
@@ -273,6 +224,7 @@ export class SchoolService {
       }
     })
 
+    //go through each school and delete the one provided 
     this.schools.forEach(element=>{
       if(element.school == schoolName){
         //element.school = newSchoolName;
@@ -281,11 +233,5 @@ export class SchoolService {
         })
       }
     })
-
-    console.log('tasks', this.tasks);
-    console.log('schools', this.schools);
   }
-
-
-
 }

@@ -23,17 +23,18 @@ export class LogInComponent implements OnInit {
   }
 
   signIn(){
-    console.log("Inside sign in");
-    //if user hasn't entered username, show an alert
-    //otherwise check if they have entered password
-    //if not, show an alert, if they did, take to next page
+
+    //if username is empty, alert that username is requried 
     if(this.username === ''){
       alert('Username is required')
     }else{
+      //if username is provided, set the session storage with the current username 
       sessionStorage.setItem('userName', this.username);
+      //require password 
       if(this.password == ''){
         alert('Password is required');
       }else{
+        //save true for password and navigate to the home page
         sessionStorage.setItem('passwordEntered', "true");
         this.router.navigate(['/home']);
       }
@@ -41,6 +42,7 @@ export class LogInComponent implements OnInit {
     
   }
 
+  //when create a new account is clicked, open the sign up component 
   createNewAccount(){
      this.dialog.open(SignUpComponent);
   }

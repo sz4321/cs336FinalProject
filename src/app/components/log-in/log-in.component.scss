@@ -1,4 +1,4 @@
-
+//this is the whole page that is going to be divided into to two for the picture and log in 
 .log-in-parent{
     display: grid;
     grid-template-columns: 70% 30%;
@@ -7,12 +7,13 @@
 
 }
 
+// make the image start in the first grid
 .grad-image{
     grid-column-start: 1;
     height:100%;
 }
 
-
+//make the login start in the second grid and center it 
 .log-in{
     grid-column-start: 2;
     margin:auto auto auto auto;  
@@ -21,6 +22,7 @@
     width: 50%;
 }
 
+// adjust the elements inside the log in box 
 .inner-elements{
     grid-column-start: 2;
     border: black solid;
@@ -33,6 +35,7 @@
     background-color: white;
 }
 
+//change the layout of the button and inputs 
 .username-input, .password-input, .sign-in-button, .new-account-button{
     margin-bottom: 3%;
     box-shadow: 1px 1px #888888;
@@ -40,14 +43,16 @@
     height:3vh;
 }
 
+//username input width 
 .username-input{
     width: 10vw;
 }
-
+//password input width 
 .password-input{
     width: 10vw;
 }
 
+//the new account button - make the height auto so the text doesn't overflow 
 .new-account-button{
     height: auto;
 }

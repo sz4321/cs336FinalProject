@@ -28,10 +28,11 @@ export class HomePageComponent implements OnInit {
     private schoolService:SchoolService,
     private firestore: AngularFirestore) { }
 
-  //the list of the name of the schools
-  // schoolName = this.manageData.getData();
+
+  // get the name of the schools in the database
   schoolName = this.schoolService.getSchools();
 
+  //get the changes in the database 
   async ngOnInit() {
     this.firestore.collection<School>('/SchoolList').valueChanges().subscribe((i)=>{
       let schoolsList;
@@ -41,31 +42,29 @@ export class HomePageComponent implements OnInit {
     })
   }
 
-  // ngOnInit(){
 
-  // }
-
+  //when a school is selected, save the name of the clicked school and open the to do list page 
+  // save then name of the school in the service and the session storage so it can be claimed when the page is refreshed 
   openSchool(schoolSelected){
     this.schoolService.setCurrentSchool(schoolSelected);
     sessionStorage.setItem('schoolSelected', schoolSelected);
     this.router.navigate(['/to-do-list']);
   }
 
+  //when add school is clicked, open the add school component 
   addschool(){
-    // console.log(this.schoolService.schools);
-    // console.log('schools', this.schoolName);
     this.dialog.open(AddSchoolComponent);
 
   }
 
+  //delete the school with the given name 
   deleteSchool(schoolName){
     this.schoolService.deleteSchool(schoolName);
   }
 
+  //save the name of the clicked school and open the edit school component 
   editSchool(schoolName){
     this.schoolService.clickedSchool = schoolName;
-    //sessionStorage.setItem('ClickedSchool', schoolName);
-    // this.schoolService.currentSchool = schoolName;
     this.dialog.open(EditSchoolComponent);
   }
 }

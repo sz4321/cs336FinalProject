@@ -8,12 +8,14 @@ import { SchoolService } from 'src/app/services/school.service';
 })
 export class EditSchoolComponent implements OnInit {
 
+  //the name of the new school that was entered 
   newSchool = '';
   constructor(private schoolService:SchoolService) { }
 
   ngOnInit(): void {
   }
 
+  //save this name in this database
   editSchool(){
     this.schoolService.editSchool(this.schoolService.clickedSchool,this.newSchool);
   }

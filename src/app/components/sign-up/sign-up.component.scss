@@ -1,9 +1,14 @@
-.whole-sign-up{
-    height:40vh;
-    width: 25vw;
-}
 
+//the sign up text 
 .sign-up{
     text-align: center;
     font-size: 70px;
+    height: 3vh;
+}
+
+//the buttons and labels 
+.create-username , .create-password, .confirm-password{
+    height: 3vh;
+    margin-bottom: 2vh;
+    margin: auto auto auto auto;
 }

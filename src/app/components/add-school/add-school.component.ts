@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import {manageData} from 'src/app/data/manageData'
 import { SchoolService } from 'src/app/services/school.service';
 
 
@@ -11,21 +10,16 @@ import { SchoolService } from 'src/app/services/school.service';
 })
 export class AddSchoolComponent implements OnInit {
 
-  constructor(
-    private manageData : manageData,
-    private schoolService:SchoolService) { }
+  constructor(private schoolService:SchoolService) { }
 
   schoolName = '';
 
   ngOnInit(): void {
   }
 
+  // When save is clicked, the school name is entered to the database
   createSchool(){
-    //this.manageData.addSchool(this.schoolName);
-    ///////////////////////
     this.schoolService.addSchool(this.schoolName);
-
-    //this.manageData.printItems();
   }
 
 }

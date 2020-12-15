@@ -1,3 +1,4 @@
+//make the div that contains the tasks a grid and divide into three 
 .icon-and-checkbox{
     display : grid;
     grid-template-columns: 90% 5% 5%;
@@ -5,6 +6,7 @@
 
 }
 
+//checkboc for the tasks 
 .checkbox{
     width: 100%;
     color: white;
@@ -15,19 +17,13 @@
 
 }
 
-// width: 25%;
-// color: white;
-// border-radius: 5%;
-// margin-right: 5vw;
-// grid-column-start: 1;
-// background-color: royalblue;
-// margin-left: auto;
-// margin-right: auto;
-
+//delete a task icon - make it start at the second column 
 .delete-task{
     grid-column-start: 2;
 }
 
+
+//delete task and edit task icon 
 .delete-task, .edit-task{
     color: white;
     background-color: black;
@@ -36,6 +32,7 @@
     cursor: pointer;
 }
 
+//edit task - make it start at the third column 
 .edit-task{
     grid-column-start: 3;
 }
@@ -44,6 +41,7 @@
     background-color: gray;
 }
 
+//add task entry 
 .add-task{
     border-radius: 50%;
     position: fixed;
@@ -53,10 +51,12 @@
     color: white; 
 }
 
+//make the checkbox gray when it is clicked 
 .gray-background{
     background-color: gray;
 }
 
+//the task entry
 .task-entry{
     margin-bottom: 1vh;
     display : grid;
@@ -70,16 +70,19 @@
     border: black solid;
 }
 
+//make it start at the third column 
 .task-button{
     grid-column-start: 3;
 }
 
+//the label of the task 
 .task-label{
     grid-column-start: 1;
     font-weight: bold;
     text-align: center;
 }
 
+//align it at the center and make bold
 .header{
     text-align: center;
     font-weight: bold;

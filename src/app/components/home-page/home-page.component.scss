@@ -1,10 +1,12 @@
-//make the cursor point when it hovers on the school list
+//divide the content into three with border gray
 .content{
     display : grid;
     grid-template-columns: 90% 5% 5%;
     border: gray solid;
     margin-bottom: 0.5vh;
 }
+
+//make the cursor point when it hovers on the school list
 .school-list{
     grid-column-start: 1;
     cursor: pointer;
@@ -14,6 +16,7 @@
     // width: 20vh;
 }
 
+//The add icon -- background color 
 .add-school{
     border-radius: 50%;
     position: fixed;
@@ -23,11 +26,13 @@
     color: white; 
 }
 
+// the font of the header 
 .header{
     text-align: center;
     font-weight: bold;
 }
 
+//make the cursor point when it hovers over the delete icon
 .delete-school{
     grid-column-start: 2;
     cursor: pointer;

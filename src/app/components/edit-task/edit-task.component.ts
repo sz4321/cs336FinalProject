@@ -10,6 +10,7 @@ import { SchoolService } from 'src/app/services/school.service';
 })
 export class EditTaskComponent implements OnInit {
 
+  // The name of the edited new task that was entered 
   newTask = '';
 
   constructor(private manageData:manageData,
@@ -18,9 +19,8 @@ export class EditTaskComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Save this name in the database
   editTask(){
-    //console.log(this.manageData.clickedTask);
-    // this.manageData.editGivenTask(this.manageData.getCurrentSchool(),this.manageData.clickedTask, this.newTask);
     this.schoolService.editGivenTask(this.schoolService.getCurrentSchool(),this.schoolService.clickedTask, this.newTask);
   }
 }

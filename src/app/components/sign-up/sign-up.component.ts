@@ -14,6 +14,7 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //redirect to the home page 
   redirectHome(){
     this.router.navigate(['/home']);
   }

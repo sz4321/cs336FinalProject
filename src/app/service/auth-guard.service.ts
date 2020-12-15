@@ -14,11 +14,12 @@ export class AuthGuardService implements CanActivate{
   constructor(private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
+    //set the session storage with user name and if password was entered 
     if(sessionStorage.getItem('userName') && sessionStorage.getItem('passwordEntered')){
-      console.log('true');
       return true;
     }
 
+    //other wise go back to login 
     this.router.navigate(['/log-in']);
     return false;
   }
